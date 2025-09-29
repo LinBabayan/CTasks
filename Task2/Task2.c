@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h> //distinguish between files and directories
-#include <stdbool.h>
 #include <string.h>
 #include <errno.h>
 #include <dirent.h>
 #include <unistd.h>
-#include <fcntl.h>
 #include <limits.h> //maximum path length
 #include <sys/stat.h>
 
