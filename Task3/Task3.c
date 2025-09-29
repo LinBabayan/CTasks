@@ -24,8 +24,7 @@ void childProc1(const char *prog1){
 
 void childProc2(const char *prog2, int p[2]){
 	//child 2 prog2.sh
-	//write in pipe output
-
+	//redirect stdout in pipe
 
 	if(dup2(p[1], STDOUT_FILENO) < 0){
 		errorHandle("output redirection error", p);
@@ -40,8 +39,7 @@ void childProc2(const char *prog2, int p[2]){
 
 void childProc3(const char *prog3, int p[2], const char *filename){
 	//child 3 prog3.sh
-	//read from pipe execute prog3 open file write output in file close file
-	
+	//redirect stdin to be from pipe, open file, redirect output in file, execute prog3
 	
 	if(dup2(p[0], STDIN_FILENO) < 0){ //input from pipe
 		errorHandle("input redirection error", p);		
@@ -82,7 +80,7 @@ int main(int argc, char *argv[]){
 			
 		case -1:
 			perror("fork1 error\n");
-			exit(EX_OSERR);//exit status fix
+			exit(EX_OSERR);
 	}
 	
 	waitpid(pids[0], &status, 0);
